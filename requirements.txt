@@ -1,4 +1,5 @@
 flask
+flask-cors
 pytest
 pytest-mock
-psycopg2
+psycopg2-binary

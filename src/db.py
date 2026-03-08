@@ -38,7 +38,7 @@ def read_from_db(query, params=None):
 
 
 def write_to_db(query, params=None):
-    conn = get_db_connection
+    conn = get_db_connection()
     cursor = conn.cursor()
     try:
         cursor.execute(query, params)

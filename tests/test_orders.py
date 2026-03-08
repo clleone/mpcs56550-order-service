@@ -50,7 +50,7 @@ def test_change_status(client, mocker, test_status):
     """Test status update for order in db."""
     mocker.patch(
         "db.read_from_db",
-        return_value=[(37, 5, 3, 30.00, "Order Received")],
+        return_value=[(1, 5, 3, 30.00, "Order Received")],
     )
     mock_write = mocker.patch("db.write_to_db")
 

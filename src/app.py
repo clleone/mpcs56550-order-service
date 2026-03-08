@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import db
 
 ### Order Service ###
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/health")
@@ -23,15 +25,25 @@ def index():
         query = "SELECT * FROM orders;"
         try:
             result = db.read_from_db(query)
-            keys = ["id", "product_id", "quantity", "total_price"]
+            keys = ["id", "product_id", "quantity", "total_price", "status"]
             return jsonify([dict(zip(keys, row)) for row in result]), 200
         except Exception as e:
             return jsonify({"error": str(e)}), 500
     # create orders
     else:
+        print("Request JSON:", request.json)
         product_id = request.json["product_id"]
         quantity = request.json["quantity"]
-        total_price = request.json["total_price"]
+        total_price = float(request.json["total_price"])
+        print("Values:", product_id, quantity, total_price)
+        print(
+            "item:",
+            type(product_id),
+            "quantity",
+            type(quantity),
+            "price",
+            type(total_price),
+        )
 
         query = "INSERT INTO orders (product_id, quantity, total_price, status) VALUES (%s, %s, %s, %s)"
         params = (product_id, quantity, total_price, "Order Received")
@@ -39,6 +51,10 @@ def index():
             db.write_to_db(query, params)
             return jsonify({"message": "Your order was successfully logged!"}), 201
         except Exception as e:
+            print("DB ERROR:", str(e))
+            import traceback
+
+            traceback.print_exc()
             return jsonify({"error": str(e)}), 500
 
 
@@ -74,4 +90,4 @@ def update_status(id):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5002)
+    app.run(host="0.0.0.0", port=5002, debug=True)

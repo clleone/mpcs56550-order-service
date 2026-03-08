@@ -31,7 +31,7 @@ request to merge.*
 - **Develop** - This branch contains the complete history of the project and serves
 as an integration branch for features. *Develop is a protected branch and
 requires a pull request to merge.*
-- Feature - Feature branches are split off of the latest Develop branch to build
+- **Feature** - Feature branches are split off of the latest Develop branch to build
 new features. Once complete, they are merged back into Develop.
 - **Release** - Once a certain amount of features have been completed, a Release
 branch is split off Develop. Once this branch is created, no new features are
