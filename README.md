@@ -3,26 +3,71 @@
 This repository houses all code and configuration files related to order
 management in my ecommerce application.
 
+### Requirements
+- Python 3.11+
+- pip
+- PostgreSQL 15 (or Docker)
+- Git
+
 ### Directory Structure
 ```text
 orders/
+|   .env
 |   .gitignore
+|   Dockerfile
+|   Jenkinsfile
 |   pyproject.toml
 |   README.md
 |   requirements.txt
 |
++---.pytest_cache
+|   |      .gitignore
+|   |      CACHEDIR.TAG
+|   \---   README.md
+|
 +---src
-|       app.py
-|       db.py
+|   |    app.py
+|   \--- db.py
 |
 \---tests
-        test_orders.py
+    \---  test_orders.py
 ```
 ### Instructions to build and run order service locally:
-- Forthcoming
+```bash
+# Clone the repo
+git clone https://github.com/yourusername/mpcs56550-order-service
+cd mpcs56550-order-service
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Copy environment template and fill in values
+cp .env.example .env
+
+# Run the service
+python src/app.py
+```
+Service will be at http://localhost:5002
 
 ### Testing:
-- Forthcoming
+```bash
+# Install test dependencies
+pip install pytest pytest-mock
+
+# Run tests
+python -m pytest tests/
+```
+
+### Docker
+```bash
+# Build the image
+docker build -t order-service .
+
+# Run the container
+docker run -p 5002:5002 \
+  --env-file .env \
+  order-service
+```
 
 ### GitFlow Overview:
 - **Main** - This branch stores the official release history. All commits here are 
