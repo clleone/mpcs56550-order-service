@@ -1,6 +1,10 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import db
+from prometheus_flask_exporter import PrometheusMetrics
+
+# right after app = Flask(__name__)
+metrics = PrometheusMetrics(app)
 
 ### Order Service ###
 

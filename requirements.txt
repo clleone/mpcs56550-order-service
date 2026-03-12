@@ -3,3 +3,4 @@ flask-cors
 pytest
 pytest-mock
 psycopg2-binary
+prometheus-flask-exporter
