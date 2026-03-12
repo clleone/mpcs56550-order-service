@@ -20,17 +20,29 @@ orders/
 |   README.md
 |   requirements.txt
 |
-+---.pytest_cache
-|   |      .gitignore
-|   |      CACHEDIR.TAG
-|   \---   README.md
++---k8s
+|   \---order-service
+|       +---dev
+|       |       configmap.yaml
+|       |       deployment.yaml
+|       |       service.yaml
+|       |
+|       +---prod
+|       |       configmap.yaml
+|       |       deployment.yaml
+|       |       service.yaml
+|       |
+|       \---staging
+|               configmap.yaml
+|               deployment.yaml
+|               service.yaml
 |
 +---src
-|   |    app.py
+|   |   app.py
 |   \--- db.py
 |
 \---tests
-    \---  test_orders.py
+    \--- test_orders.py
 ```
 ### Instructions to build and run order service locally:
 ```bash
